@@ -146,7 +146,15 @@ class StateViewPager extends android.support.v4.view.ViewPager {
 
     public onInterceptTouchEvent(event: android.view.MotionEvent): boolean {
         if (this._allowScrollIn) {
-            return super.onInterceptTouchEvent(event);
+            try {
+                return super.onInterceptTouchEvent(event);
+            } catch (ex) {
+                if (ex.message.indexOf("pointerIndex out of range") > -1) {
+                  return false;
+                } else {
+                  throw ex;
+                }
+            }
         }
 
         return false;
