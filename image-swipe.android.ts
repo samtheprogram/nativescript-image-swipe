@@ -250,7 +250,6 @@ class ZoomImageView extends android.widget.ImageView {
     private _totalTranslateX = [0]; // HACK: for some reason only number private variable does not work, use Array and set the value to the first item in the array. 
     private _totalTranslateY = [0]; // HACK: for some reason only number private variable does not work, use Array and set the value to the first item in the array. 
 
-    private _orientationChangeListener: OrientationListener;
     private _onCanScrollChangeListener: OnCanScrollChangeListenerImplementation;
 
     constructor(private _owner: WeakRef<ImageSwipe>) {
@@ -269,9 +268,6 @@ class ZoomImageView extends android.widget.ImageView {
             // tslint:disable-next-line:no-empty
             onScaleEnd: () => { }
         }));
-
-        this._orientationChangeListener = new OrientationListener(context, that);
-        this._orientationChangeListener.enable();
 
         return __native(this);
     }
